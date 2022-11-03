@@ -38,9 +38,9 @@ function start(){
 
 
 function handleClick(e){
-    const cell=e.target  //the circle we're hovering/targeting on
+    const cell=e.target                                 //the circle we're hovering/targeting on
     const currentClass= circleturn? O_CLASS : X_CLASS
-    markplace(cell, currentClass)  //asking to mark This cell with This class
+    markplace(cell, currentClass)                           //asking to mark This cell with This class
     
     if (checkWin(currentClass)){
         endGame(false)
@@ -61,18 +61,18 @@ function markplace(cell, currentClass){
 
 
 function swapTurn(){
-    circleturn=!circleturn;  //if current class is circle, it'll change it to not circle
+    circleturn=!circleturn;                     //if current class is circle, it'll change it to not circle i.e X
 }
 
 
-function boardhover(){
+function boardhover(){                          //removes existing class
     board.classList.remove(X_CLASS)
     board.classList.remove(O_CLASS)
-    if(circleturn){
+    if(circleturn){                                 //if it was circle's turn, then now O class hover effects will be applied
         board.classList.add(O_CLASS)
     }
     else{
-        board.classList.add(X_CLASS)
+        board.classList.add(X_CLASS)                    //vice-versa
     }
 }
 
@@ -86,14 +86,14 @@ function checkWin(currentClass){
 }
 
 
-function isDraw(){
-    return [...cellElements].every(cell =>{
+function isDraw(){                                                                          //if every cell is filled with and element of class x or O
+    return [...cellElements].every(cell =>{                                                 //returns true (it's a draw)
         return cell.classList.contains(X_CLASS) || cell.classList.contains(O_CLASS)
     })
 }
 
-function endGame(draw){
-    if (draw)
+function endGame(draw){                                                    //draw=true if isDraw() returns 1
+    if (draw)                                                              //prints if draw or win and shows the modal
     {
         winningText.innerText= `DRAW!`
     }
@@ -103,4 +103,17 @@ function endGame(draw){
         
     }
     winningMessage.classList.add('show')
+}
+
+
+
+const toggle =document.getElementsById("slide")
+// const cellEach= document.getElementsById("cellEach")
+toggle.addEventListener('click', darkMode)
+
+
+function darkMode(){
+    cellEach.classList.add('dark')
+
+
 }
